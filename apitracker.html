@@ -1,0 +1,32 @@
+
+<head>
+    <title>jeStats</title>
+    <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="apitracker.css"/>
+</head>
+
+<body>
+  <div class="header">
+    <div class="title">
+      <h1>Estatísticas jeKnowledge</h1>
+    </div>
+  </div>
+  <div class="geral">
+    <ul>
+      <li>GitHub: {{> stats}}</li>
+      <li>Facebook: 3k likes </li>
+      <li>Slack: </li>
+      <li>Twitter: </li>
+    </ul>
+  </div>
+
+  <!-- {{> hello}} -->
+</body>
+
+<!-- <template name="hello">
+  <button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
+</template> -->
+<Template name="stats">
+    <p>commits: {{github}}</p>
+</Template>

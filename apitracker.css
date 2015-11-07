@@ -1,0 +1,28 @@
+.header{
+  background-color: #6ec4e9;
+  height: 200px;
+  max-width: 120%;
+  margin-top: -2%;
+  margin-left: -2%;
+  margin-right: -2%;
+}
+.title{
+  font-family: helvetica;
+  font-size: 1.5em;
+  margin-left: 20%;
+  margin-top: 5%;
+  color:white;
+  float: left;
+}
+.geral li{
+  list-style: none;
+  font-size:1.2em;
+  font-family:Kievit;
+  margin-left: 5%;
+  padding-bottom: 1%;
+}
+.geral ul{
+  list-style-type: none;
+  margin:0;
+  padding: 0;
+}
