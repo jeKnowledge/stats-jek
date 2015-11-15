@@ -49,7 +49,6 @@ if (Meteor.isClient) {
     }
   });
 
-
   /*HTTP.call('GET',"https://api.twitter.com/1.1/followers/ids.json?q=jeknowledge&src=typd",{},function(error,response){
     var DataTwitter=response;
     if(RandomCenas.findOne({api:"twitter"})===undefined){

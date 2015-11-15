@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 if (Meteor.isServer) {
   Meteor.startup(function () {
     Meteor.methods({
@@ -75,3 +76,8 @@ if (Meteor.isServer) {
 
 });
 }
+=======
+Meteor.startup(function () {
+
+});
+>>>>>>> 03a451e2ffa57e6f1ae04c7f55c74531275f98c5
