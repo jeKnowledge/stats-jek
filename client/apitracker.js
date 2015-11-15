@@ -8,7 +8,7 @@ if (Meteor.isClient) {
     }
 
   });
-  HTTP.call('GET',"https://api.github.com/teams/1366673/repos?access_token=a1879eb374090bd929545cb65b1455923bc2d39d",{},function(error,response){
+  HTTP.call('GET',"https://api.github.com/teams/1366673/repos?access_token=",{},function(error,response){
     var Data1=response.data;
     if(RandomCenas.findOne({api:"github"})===undefined){
       Meteor.call('addCenasGit');
@@ -37,7 +37,7 @@ if (Meteor.isClient) {
       var Id=RandomCenas.findOne({api:"github"})._id;
       Meteor.call('resetCenasComm');
       for(k=0;k<RandomCenas.findOne({api:"github"}).repositorios.length;k++){
-        HTTP.call('GET',"https://api.github.com/repos/jeKnowledge/"+RandomCenas.findOne({api:"github"}).repositorios[k]+"/stats/commit_activity?access_token=a1879eb374090bd929545cb65b1455923bc2d39d",{},function(error,response){
+        HTTP.call('GET',"https://api.github.com/repos/jeKnowledge/"+RandomCenas.findOne({api:"github"}).repositorios[k]+"/stats/commit_activity?access_token=",{},function(error,response){
           var sum=0;
           for(k=0;k<response.data.length;k++){
             console.log("aqui")
