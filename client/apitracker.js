@@ -5,6 +5,12 @@ if (Meteor.isClient) {
     },
     githubCOM:function(){
       return RandomCenas.findOne({api:"github"}).commits;
+    },
+    twitterFOL:function(){
+      return RandomCenas.findOne({api:"twitter"}).followers;
+    },
+    twitterTWT:function(){
+      return RandomCenas.findOne({api:"twitter"}).tweets;
     }
 
   });
@@ -47,21 +53,8 @@ if (Meteor.isClient) {
         });
       }
     }
-  });
-
-  /*HTTP.call('GET',"https://api.twitter.com/1.1/followers/ids.json?q=jeknowledge&src=typd",{},function(error,response){
-    var DataTwitter=response;
-    if(RandomCenas.findOne({api:"twitter"})===undefined){
-      RandomCenas.insert({
-        api:"twitter",
-        followers:[],
-        tweets:[],
-        createdAt:new Date()
-      })
-    }
-
-
-  });*/
-
+    });
+    Meteor.call('addCenasTwitter');
+    Meteor.call('updateCenasTwitFol');
 
 }

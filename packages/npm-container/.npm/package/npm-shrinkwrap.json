@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "fibers": {
+      "version": "1.0.7"
+    },
     "twit": {
       "version": "2.1.1",
       "dependencies": {
