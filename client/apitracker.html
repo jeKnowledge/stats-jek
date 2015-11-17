@@ -13,19 +13,24 @@
     </div>
   </div>
   <div class="geral">
-    <ul>
-      <li>GitHub:
-        {{>stats}}
-      </li>
-      <li>Facebook: </li>
-      <li>Slack: </li>
-      <li>Twitter: </li>
-    </ul>
+      {{>stats}}
   </div>
     <!-- {{> hello}} -->
 </body>
 
 <Template name="stats">
-  <p>{{githubREP}}</p>
-  <p>{{githubCOM}}</p>
+    <ul>
+      <li>GitHub:
+        {{> github}}
+      </li>
+      <li>Twitter:
+        <p>{{twitterFOL}}</p>
+        <p>{{twitterTWT}}</p>
+      </li>
+    </ul>
 </Template>
+
+<template name="github">
+  <p>Total Commits: {{github.totalCommits}}</p>
+  <button>Update</button>
+</template>
