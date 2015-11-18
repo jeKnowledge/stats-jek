@@ -16,6 +16,29 @@ Template.stats.helpers({
 
 Template.stats.events({
   'click button' : function(){
+    /*
+    var d = new Date();
+    d.setDate(d.getDate() - 7);
+
+    var link = "https://api.github.com/repos/jeknowledge/" + "b3-tour" + "/commits";
+    var arguments = {
+      headers: {"User-Agent": "Meteor/1.0"},
+      params: {
+        "access_token": "87c7bbdab315e2767296510f7914a7298fe79347",
+        "since": d.toISOString()
+      }
+    };
+
+
+    HTTP.call('GET', link, arguments, function(error,response){
+      var github = RandomCenas.findOne({api:"github"});
+
+      for(var i = 0; i < response.data.length; i++){
+        console.log(response.data[i]);
+      }
+
+    });*/
+
     Meteor.call("updateGithub");
   }
 });

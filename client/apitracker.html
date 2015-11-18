@@ -31,6 +31,12 @@
 </Template>
 
 <template name="github">
-  <p>Total Commits: {{github.totalCommits}}</p>
   <button>Update</button>
+  <p>Total Commits: {{github.totalCommits}}</p>
+  <p>Commits Last Week:</p>
+  <ul>
+    {{# each commits}}
+      <li>«{{commit.message}}» by {{commit.user}} in {{commit.repo}}</li>
+    {{/each}}
+  </ul>
 </template>

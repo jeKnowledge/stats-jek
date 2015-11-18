@@ -1,4 +1,40 @@
 Github = {
+  updateLastWeekCommits : function(name){
+
+    //Delete old
+    RandomCenas.remove({commit: {$exists: true, repo: name}});
+
+    var d = new Date();
+    d.setDate(d.getDate() - 7);
+
+    var link = "https://api.github.com/repos/jeknowledge/" + name + "/commits";
+    var arguments = {
+      headers: {"User-Agent": "Meteor/1.0"},
+      params: {
+        "access_token": "87c7bbdab315e2767296510f7914a7298fe79347",
+        "since": d.toISOString()
+      }
+    };
+
+
+    HTTP.call('GET', link, arguments, function(error,response){
+      var github = RandomCenas.findOne({api:"github"});
+
+      for(var i = 0; i < response.data.length; i++){
+        var c = response.data[i]; //Commit info
+        RandomCenas.insert({
+          api: "github",
+          commit: {
+            message: c.commit.message,
+            date: Date.parse(c.commit.author.date),
+            repo: name,
+            user: c.author.login
+          }
+        });
+      }
+
+    });
+  },
   updateRepoData : function(name, data){
 
     var github = RandomCenas.findOne({api:"github"});
@@ -26,7 +62,7 @@ Github = {
     var link = "https://api.github.com/repos/jeknowledge/" + name + "/stats/contributors";
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
-      params: {"access_token": "44288a326e1468aa17ec5eaddcb77f85e53029e6"}
+      params: {"access_token": "87c7bbdab315e2767296510f7914a7298fe79347"}
     };
 
 
@@ -37,8 +73,6 @@ Github = {
       if(!github.repos[name] || github.repos[name] != response.data.total)
         Github.updateRepoData(name.valueOf(), response.data);
 
-      //getLastWeekCommits();
-
     });
   },
   getRepoList : function(){
@@ -46,14 +80,16 @@ Github = {
     var link = "https://api.github.com/orgs/jeknowledge/repos";
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
-      params: {"access_token": "44288a326e1468aa17ec5eaddcb77f85e53029e6"}
+      params: {"access_token": "87c7bbdab315e2767296510f7914a7298fe79347"}
     };
 
 
     HTTP.call('GET', link, arguments, function(error,response){
 
-      for(var i = 0; i < response.data.length; i++)
-        Github.checkRepo(response.data[i].name);
+      for(var i = 0; i < response.data.length; i++){
+        //Github.checkRepo(response.data[i].name);
+        Github.updateLastWeekCommits(response.data[i].name);
+      }
 
     });
   }
