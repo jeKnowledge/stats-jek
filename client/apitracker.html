@@ -12,31 +12,42 @@
       <h1>Estatísticas jeKnowledge</h1>
     </div>
   </div>
-  <div class="geral">
-      {{>stats}}
+  <div id="list1">
+     <ul>
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Slack</a></li>
+     </ul>
   </div>
+    <div>
+      {{>stats}}
+    </div>
     <!-- {{> hello}} -->
 </body>
 
 <Template name="stats">
     <ul>
-      <li>GitHub:
+      <ul>
         {{> github}}
-      </li>
-      <li>Twitter:
-        <p>{{twitterFOL}}</p>
-        <p>{{twitterTWT}}</p>
-      </li>
+      </ul>
+      <!-- <li>Twitter:
+        Total Followers:
+        Tweets Last Week;
+      </li> -->
     </ul>
 </Template>
 
 <template name="github">
-  <button>Update</button>
-  <p>Total Commits: {{github.totalCommits}}</p>
-  <p>Commits Last Week:</p>
+  <div class="geral">
+    <li>GitHub: <button class="myButton">Update</button>
+      <p>Total Commits: {{github.totalCommits}}, {{commitsTE}}</p>
+      <p>Latest Commits:</p>
+    </li>
+  </div>
   <ul>
     {{# each commits}}
-      <li style="font-size:80%">«{{commit.message}}» by {{commit.user}} in {{commit.repo}}</li>
+      <li id="listaComm">«{{commit.message}}» by {{commit.user}} in {{commit.repo}}</li>
     {{/each}}
   </ul>
 </template>

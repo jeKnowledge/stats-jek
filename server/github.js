@@ -2,8 +2,7 @@ Github = {
   updateLastWeekCommits : function(name){
 
     //Delete old
-    RandomCenas.remove({commit: {$exists: true, repo: name}});
-
+    RandomCenas.remove({commit: {$exists: true}});
     var d = new Date();
     d.setDate(d.getDate() - 7);
 
@@ -11,7 +10,7 @@ Github = {
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
       params: {
-        "access_token": "87c7bbdab315e2767296510f7914a7298fe79347",
+        "access_token": "81a5ea93368eaeaea1d637adefa54b457d32f395",
         "since": d.toISOString()
       }
     };
@@ -62,7 +61,7 @@ Github = {
     var link = "https://api.github.com/repos/jeknowledge/" + name + "/stats/contributors";
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
-      params: {"access_token": "87c7bbdab315e2767296510f7914a7298fe79347"}
+      params: {"access_token": "81a5ea93368eaeaea1d637adefa54b457d32f395"}
     };
 
 
@@ -80,14 +79,13 @@ Github = {
     var link = "https://api.github.com/orgs/jeknowledge/repos";
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
-      params: {"access_token": "87c7bbdab315e2767296510f7914a7298fe79347"}
+      params: {"access_token": "81a5ea93368eaeaea1d637adefa54b457d32f395"}
     };
 
 
     HTTP.call('GET', link, arguments, function(error,response){
-
       for(var i = 0; i < response.data.length; i++){
-        //Github.checkRepo(response.data[i].name);
+        Github.checkRepo(response.data[i].name);
         Github.updateLastWeekCommits(response.data[i].name);
       }
 

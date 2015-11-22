@@ -14,73 +14,37 @@ Template.stats.helpers({
 
 });
 
-Template.stats.events({
+Template.github.events({
   'click button' : function(){
-    /*
-    var d = new Date();
-    d.setDate(d.getDate() - 7);
-
-    var link = "https://api.github.com/repos/jeknowledge/" + "b3-tour" + "/commits";
-    var arguments = {
-      headers: {"User-Agent": "Meteor/1.0"},
-      params: {
-        "access_token": "87c7bbdab315e2767296510f7914a7298fe79347",
-        "since": d.toISOString()
-      }
-    };
-
-
-    HTTP.call('GET', link, arguments, function(error,response){
-      var github = RandomCenas.findOne({api:"github"});
-
-      for(var i = 0; i < response.data.length; i++){
-        console.log(response.data[i]);
-      }
-
-    });*/
 
     Meteor.call("updateGithub");
+    //Meteor.call("updateCenasTwitFol");
   }
 });
-/*HTTP.call('GET',"https://api.github.com/teams/1366673/repos?access_token=",{},function(error,response){
-  var Data1=response.data;
-  if(RandomCenas.findOne({api:"github"})===undefined){
-    Meteor.call('addCenasGit');
-    var Id=RandomCenas.findOne({api:"github"})._id;
-    for(i=0;i<Data1.length;i++){
-      Meteor.call('updateCenasGitRep',Data1[i].name);
-      HTTP.call('GET',"https://api.github.com/repos/jeKnowledge/"+RandomCenas.findOne({api:"github"}).repositorios[i]+"/stats/commit_activity",{},function(error,response){
-        var Data2=response.data;
-        Meteor.call('updateCenasGitComm',Data2.length);
-      });
-    }
-  }else if(RandomCenas.findOne({api:"github"}).repositorios.length!==Data1.length){
-    var Id=RandomCenas.findOne({api:"github"})._id;
-    for(k=RandomCenas.findOne({api:"github"}).repositorios.length;k<Data1.length;k++){
-      Meteor.call('updateCenasGitRep',Data1[k].name);
 
-      HTTP.call('GET',"https://api.github.com/repos/jeKnowledge/"+RandomCenas.findOne({api:"github"}).repositorios[k]+"/stats/commit_activity",{},function(error,response){
-        var sum=0;
-        for(k=0;k<response.data.length;k++){
-          sum+=response.data[k].total;
-        }
-        Meteor.call('updateCenasGitComm',sum);
-      });
+function randomString(length, chars) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
+    return result;
+}
+var rString = randomString(32, '0123456789abcdefghijklmnopqrstuvxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+console.log(rString);
+
+
+ /*var link="https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=jeknowledge"
+  var arguments={
+    headers: {"User-Agent":"Meteor/1.0"},
+    params : {
+      "oauth_consumer_key":"AWzYAlWFRhcPgDU9zsownZMg3",
+      "oauth_nonce":rString,
+      "oauth_signature":"tnnArxj06cWHq44gCs1OSKk%2FjLY%3D",
+      "oauth_signature_method":"HMAC-SHA1",
+      "oauth_timestamp":""+(new Date().getTime()/1000).toFixed(0)+"",
+      "oauth_token":"4175010201-TEp9qNKzN2vYCaM0O4mvjkj0GMjJFZIbGPYaVv4",
+      "oauth_version":"1.0"
     }
-  }else if(RandomCenas.findOne({api:"github"}).repositorios.length===Data1.length){
-    var Id=RandomCenas.findOne({api:"github"})._id;
-    Meteor.call('resetCenasComm');
-    for(k=0;k<RandomCenas.findOne({api:"github"}).repositorios.length;k++){
-      HTTP.call('GET',"https://api.github.com/repos/jeKnowledge/"+RandomCenas.findOne({api:"github"}).repositorios[k]+"/stats/commit_activity?access_token=",{},function(error,response){
-        var sum=0;
-        for(k=0;k<response.data.length;k++){
-          console.log("aqui")
-          sum+=response.data[k].total;
-        }
-        Meteor.call('updateCenasGitComm',sum);
-      });
-    }
-  }
-});
-Meteor.call('addCenasTwitter');
-Meteor.call('updateCenasTwitFol');*/
+  };
+  HTTP.call('POST',link,arguments,function(error,response){
+      console.log(error);
+  })
+*/
