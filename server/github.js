@@ -10,7 +10,7 @@ Github = {
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
       params: {
-        "access_token": "81a5ea93368eaeaea1d637adefa54b457d32f395",
+        "access_token": "959c0cb0ae8b145acf622118d23841d40f210751",
         "since": d.toISOString()
       }
     };
@@ -18,9 +18,10 @@ Github = {
 
     HTTP.call('GET', link, arguments, function(error,response){
       var github = RandomCenas.findOne({api:"github"});
-
+      //RandomCenas.update(github._id,{$set:{lastCommitsnumb:0}});
       for(var i = 0; i < response.data.length; i++){
-        var c = response.data[i]; //Commit info
+        var c = response.data[i];
+        var soma=0; //Commit info
         RandomCenas.insert({
           api: "github",
           commit: {
@@ -30,8 +31,9 @@ Github = {
             user: c.author.login
           }
         });
+        soma+=1;
+        RandomCenas.update(github._id,{$inc:{lastCommitsnumb:soma}});
       }
-
     });
   },
   updateRepoData : function(name, data){
@@ -61,7 +63,7 @@ Github = {
     var link = "https://api.github.com/repos/jeknowledge/" + name + "/stats/contributors";
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
-      params: {"access_token": "81a5ea93368eaeaea1d637adefa54b457d32f395"}
+      params: {"access_token": "959c0cb0ae8b145acf622118d23841d40f210751"}
     };
 
 
@@ -79,10 +81,10 @@ Github = {
     var link = "https://api.github.com/orgs/jeknowledge/repos";
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
-      params: {"access_token": "81a5ea93368eaeaea1d637adefa54b457d32f395"}
+      params: {"access_token": "959c0cb0ae8b145acf622118d23841d40f210751"}
     };
 
-
+    RandomCenas.update(RandomCenas.findOne({api:"github"})._id,{$set:{lastCommitsnumb:0}});
     HTTP.call('GET', link, arguments, function(error,response){
       for(var i = 0; i < response.data.length; i++){
         Github.checkRepo(response.data[i].name);

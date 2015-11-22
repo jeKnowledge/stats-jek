@@ -1,7 +1,7 @@
 //Inicializa a base de dados com valores default
 function initDB(){
   if(RandomCenas.findOne({api: "github"}) === undefined){
-    RandomCenas.insert({api:"github", totalCommits: 0, repos: {}});
+    RandomCenas.insert({api:"github", totalCommits: 0, repos: {},lastCommitsnumb:0});
   }
   if(RandomCenas.findOne({api:"twitter"})=== undefined){
     RandomCenas.insert({api:"twitter",totalFoll:0,tweets:{}});
