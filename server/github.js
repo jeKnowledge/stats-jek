@@ -10,18 +10,16 @@ Github = {
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
       params: {
-        "access_token": "959c0cb0ae8b145acf622118d23841d40f210751",
+        "access_token": "b29eba401f2f0bd761e16d7507f0c413009cf2a8",
         "since": d.toISOString()
       }
     };
 
-
     HTTP.call('GET', link, arguments, function(error,response){
       var github = RandomCenas.findOne({api:"github"});
-      //RandomCenas.update(github._id,{$set:{lastCommitsnumb:0}});
       for(var i = 0; i < response.data.length; i++){
         var c = response.data[i];
-        var soma=0; //Commit info
+        var authorCommit=c.author.login; //Commit info
         RandomCenas.insert({
           api: "github",
           commit: {
@@ -31,8 +29,7 @@ Github = {
             user: c.author.login
           }
         });
-        soma+=1;
-        RandomCenas.update(github._id,{$inc:{lastCommitsnumb:soma}});
+        RandomCenas.update(github._id,{$inc:{lastCommitsnumb:1}});
       }
     });
   },
@@ -52,7 +49,6 @@ Github = {
 
     //Update Repo Data
     github.repos[name] = sum
-
     //Save
     RandomCenas.update(github._id,{
       $set: {totalCommits: github.totalCommits + new_commits, repos: github.repos}
@@ -63,7 +59,7 @@ Github = {
     var link = "https://api.github.com/repos/jeknowledge/" + name + "/stats/contributors";
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
-      params: {"access_token": "959c0cb0ae8b145acf622118d23841d40f210751"}
+      params: {"access_token": "b29eba401f2f0bd761e16d7507f0c413009cf2a8"}
     };
 
 
@@ -81,17 +77,16 @@ Github = {
     var link = "https://api.github.com/orgs/jeknowledge/repos";
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
-      params: {"access_token": "959c0cb0ae8b145acf622118d23841d40f210751"}
+      params: {"access_token": "b29eba401f2f0bd761e16d7507f0c413009cf2a8"}
     };
-
     RandomCenas.update(RandomCenas.findOne({api:"github"})._id,{$set:{lastCommitsnumb:0}});
+    //RandomCenas.update(RandomCenas.findOne({api:"github"})._id,{$set:{pessoas:{}}});
     HTTP.call('GET', link, arguments, function(error,response){
       for(var i = 0; i < response.data.length; i++){
         Github.checkRepo(response.data[i].name);
         Github.updateLastWeekCommits(response.data[i].name);
       }
-
-    });
+      });
   }
 
 };

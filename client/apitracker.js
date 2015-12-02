@@ -1,34 +1,44 @@
 Template.stats.helpers({
-  githubREP: function(){
-    return RandomCenas.findOne({api:"github"}).repositorios;
-  },
-  githubCOM:function(){
-    return RandomCenas.findOne({api:"github"}).commits;
-  },
-  twitterFOL:function(){
-    return RandomCenas.findOne({api:"twitter"}).followers;
-  },
-  twitterTWT:function(){
-    return RandomCenas.findOne({api:"twitter"}).tweets;
-  }
+  });
 
+
+Template.stats.events({
+  'click #aGithub':function(){
+    $(".twitter").css('display', 'none');
+    $(".facebook").css('display', 'none');
+    $(".slack").css('display', 'none');
+    $(".github").css('display', 'block');
+  },
+  'click #aTwitter':function(){
+    $(".twitter").css('display', 'block');
+    $(".facebook").css('display', 'none');
+    $(".slack").css('display', 'none');
+    $(".github").css('display', 'none');
+  },
+  'click #aFacebook':function(){
+    $(".twitter").css('display', 'none');
+    $(".facebook").css('display', 'block');
+    $(".slack").css('display', 'none');
+    $(".github").css('display', 'none');
+  },
+   'click #aSlack':function(){
+      $(".twitter").css('display', 'none');
+      $(".facebook").css('display', 'none');
+      $(".slack").css('display', 'block');
+      $(".github").css('display', 'none');
+    }
 });
-
 Template.github.events({
   'click button' : function(){
-
     Meteor.call("updateGithub");
-    //Meteor.call("updateCenasTwitFol");
+  }
+
+});
+Template.twitter.events({
+  'click button' : function(){
+    Meteor.call("updateCenasTwitFol");
   }
 });
-
-function randomString(length, chars) {
-    var result = '';
-    for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
-    return result;
-}
-var rString = randomString(32, '0123456789abcdefghijklmnopqrstuvxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
-console.log(rString);
 
 
  /*var link="https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=jeknowledge"

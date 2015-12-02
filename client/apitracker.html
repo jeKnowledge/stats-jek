@@ -12,36 +12,40 @@
       <h1>Estatísticas jeKnowledge</h1>
     </div>
   </div>
-  <div id="list1">
-     <ul>
-        <li><a href="#">GitHub</a></li>
-        <li><a href="#">Twitter</a></li>
-        <li><a href="#">Facebook</a></li>
-        <li><a href="#">Slack</a></li>
-     </ul>
-  </div>
-    <div>
-      {{>stats}}
-    </div>
-    <!-- {{> hello}} -->
+  {{>stats}}
 </body>
 
-<Template name="stats">
-    <ul>
-      <ul>
-        {{> github}}
-      </ul>
-      <!-- <li>Twitter:
-        Total Followers:
-        Tweets Last Week;
-      </li> -->
-    </ul>
-</Template>
+<template name="stats">
+  <div id="list1">
+     <ul>
+        <li><a href="#" id="aGithub">GitHub</a></li>
+        <li><a href="#" id="aTwitter">Twitter</a></li>
+        <li><a href="#" id="aFacebook">Facebook</a></li>
+        <li><a href="#" id="aSlack">Slack</a></li>
+     </ul>
+  </div>
+  <div class="github">
+    {{>github}}
+  </div>
+  <div class="twitter" style="display:none">
+    {{>twitter}}
+  </div>
+  <div class="facebook" style="display:none">
+    {{>facebook}}
+  </div>
+  <div class="slack" style="display:none">
+    {{>slack}}
+  </div>
+</template>
+
+<template name="showDivs">
+
+</template>
 
 <template name="github">
   <div class="geral">
     <li>GitHub: <button class="myButton">Update</button>
-      <p>Total Commits: {{github.totalCommits}}, ({{github.lastCommitsnumb}} na ultima semana)</p>
+      <p>Total Commits: {{github.totalCommits}} ({{github.lastCommitsnumb}} nos últimos 7 dias)</p>
       <p>Latest Commits:</p>
     </li>
   </div>
@@ -50,4 +54,36 @@
       <li id="listaComm">«{{commit.message}}» by {{commit.user}} in {{commit.repo}}</li>
     {{/each}}
   </ul>
+
+</template>
+
+<template name="twitter">
+  <div class="geral">
+    <li>Twitter: <button class="myButton">Update</button>
+      <p>Total Followers: {{twitter.totalFoll}}</p>
+      <p>Latest Tweets:</p>
+    </li>
+        <ul>
+          {{# each dbTweets}}
+            <li> «{{tweets.message}}» </li>
+          {{/each}}
+        </ul>
+  </div>
+</template>
+
+<template name="facebook">
+  <div class="geral">
+    <li>Facebook: <button class="myButton">Update</button>
+      <p>Total Likes: 2259</p>
+      <p>Latest posts:</p>
+    </li>
+  </div>
+</template>
+
+<template name="slack">
+  <div class="geral">
+    <li>Slack: <button class="myButton">Update</button>
+
+    </li>
+  </div>
 </template>

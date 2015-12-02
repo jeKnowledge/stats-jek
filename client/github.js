@@ -10,7 +10,7 @@ Template.github.helpers({
       },
       {
         sort: {"commit.date": -1},
-        limit:9
+        limit:10
       }
     );
   }
