@@ -12,7 +12,7 @@ Twitter={
 
     RandomCenas.remove({tweets: {$exists: true}});
     if(RandomCenas.findOne({api:"twitter"})===undefined){
-      RandomCenas.insert({api:"twitter",totalFoll:0,tweets:{}});
+      RandomCenas.insert({api:"twitter",totalFoll:0});
       var Id2=RandomCenas.findOne({api:"twitter"})._id;
     }else{
       var Id2=RandomCenas.findOne({api:"twitter"})._id;

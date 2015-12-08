@@ -71,8 +71,8 @@
 	position:relative;
 	top:1px;
 }
-#listaComm{
-  font-size: 1.2em;
+.listaComm{
+  font-size: 1.3em;
   font-size:helvetica;
 }
 #list1 { }

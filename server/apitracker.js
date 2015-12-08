@@ -4,9 +4,12 @@ function initDB(){
     RandomCenas.insert({api:"github", totalCommits: 0, repos: {},lastCommitsnumb:0,pessoas: {} });
   }
   if(RandomCenas.findOne({api:"twitter"})=== undefined){
-    RandomCenas.insert({api:"twitter",totalFoll:0,tweets:{}});
+    RandomCenas.insert({api:"twitter",totalFoll:0});
   }
-}
+  if(RandomCenas.findOne({api:"facebook"})===undefined){
+    RandomCenas.insert({api:"facebook",totalLikes:0});
+  }
+};
 
 
 Meteor.startup(function () {
@@ -20,6 +23,12 @@ Meteor.startup(function () {
 
     'updateCenasTwitFol':function(){
       Twitter.updateTotalFoll();
+    },
+    'updateFacebook':function(){
+      Facebook.getFacebookStats();
+    },
+    'updateSlack':function(){
+      Slack.LastMsg();
     }
   });
 

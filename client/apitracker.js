@@ -1,5 +1,13 @@
-Template.stats.helpers({
-  });
+Template.slack.helpers({
+  slack:function(){
+    return RandomCenas.find(
+      {
+        api:"slack",
+        msg:{$exists:true}
+      }
+    );
+  }
+});
 
 
 Template.stats.events({
@@ -39,22 +47,13 @@ Template.twitter.events({
     Meteor.call("updateCenasTwitFol");
   }
 });
-
-
- /*var link="https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=jeknowledge"
-  var arguments={
-    headers: {"User-Agent":"Meteor/1.0"},
-    params : {
-      "oauth_consumer_key":"AWzYAlWFRhcPgDU9zsownZMg3",
-      "oauth_nonce":rString,
-      "oauth_signature":"tnnArxj06cWHq44gCs1OSKk%2FjLY%3D",
-      "oauth_signature_method":"HMAC-SHA1",
-      "oauth_timestamp":""+(new Date().getTime()/1000).toFixed(0)+"",
-      "oauth_token":"4175010201-TEp9qNKzN2vYCaM0O4mvjkj0GMjJFZIbGPYaVv4",
-      "oauth_version":"1.0"
-    }
-  };
-  HTTP.call('POST',link,arguments,function(error,response){
-      console.log(error);
-  })
-*/
+Template.facebook.events({
+  'click button':function(){
+    Meteor.call('updateFacebook');
+  }
+});
+Template.slack.events({
+  'click button':function(){
+    Meteor.call('updateSlack');
+  }
+})

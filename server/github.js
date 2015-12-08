@@ -10,7 +10,7 @@ Github = {
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
       params: {
-        "access_token": "b29eba401f2f0bd761e16d7507f0c413009cf2a8",
+        "access_token": "f3df63ca0edcd76ffdece39347b78bbf893539bd",
         "since": d.toISOString()
       }
     };
@@ -59,7 +59,7 @@ Github = {
     var link = "https://api.github.com/repos/jeknowledge/" + name + "/stats/contributors";
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
-      params: {"access_token": "b29eba401f2f0bd761e16d7507f0c413009cf2a8"}
+      params: {"access_token": "f3df63ca0edcd76ffdece39347b78bbf893539bd"}
     };
 
 
@@ -77,7 +77,7 @@ Github = {
     var link = "https://api.github.com/orgs/jeknowledge/repos";
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
-      params: {"access_token": "b29eba401f2f0bd761e16d7507f0c413009cf2a8"}
+      params: {"access_token": "f3df63ca0edcd76ffdece39347b78bbf893539bd"}
     };
     RandomCenas.update(RandomCenas.findOne({api:"github"})._id,{$set:{lastCommitsnumb:0}});
     //RandomCenas.update(RandomCenas.findOne({api:"github"})._id,{$set:{pessoas:{}}});
