@@ -24,6 +24,7 @@ Twitter={
 
       for(i=0;i<5;i++){
         var c=data[i];
+        console.log(c);
         RandomCenas.insert({
           api:"twitter",
           tweets:{
@@ -31,6 +32,7 @@ Twitter={
             date: Date.parse(c.created_at),
             fav:c.favorite_count,
             retweet:c.retweet_count
+
           }
         });
       }

@@ -17,7 +17,7 @@ Slack={
         msg:{
           channel:channelName,
           message:data.text,
-          author:data.user
+          author:Slack.getName(data.user)
         }
       });
     });
@@ -27,6 +27,17 @@ Slack={
     Slack.getLastMSG("C0D2AAXU3","#b3");
     Slack.getLastMSG("C03SNTML6","#events");
     Slack.getLastMSG("C02NNME5P","#random");
+  },
+  getName:function(nomeID){
+    var link = "https://slack.com/api/users.info" ;
+    var arguments = {
+      headers: {"User-Agent": "Meteor/1.0"},
+      params: {"token": "xoxp-2770728157-13157110868-15807297649-cc4e782ed1",
+                "user":nomeID
+              }
+    };
+    var result=HTTP.call('GET',link,arguments);
+    return result.data.user.name;
   }
 
 };
