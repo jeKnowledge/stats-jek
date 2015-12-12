@@ -7,7 +7,7 @@ function initDB(){
     RandomCenas.insert({api:"twitter",totalFoll:0});
   }
   if(RandomCenas.findOne({api:"facebook"})===undefined){
-    RandomCenas.insert({api:"facebook",totalLikes:0});
+    RandomCenas.insert({api:"facebook",totalLikes:0,totalMents:0,lastEvent:{}});
   }
 };
 

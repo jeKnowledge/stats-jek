@@ -24,7 +24,6 @@ Twitter={
 
       for(i=0;i<5;i++){
         var c=data[i];
-        console.log(c);
         RandomCenas.insert({
           api:"twitter",
           tweets:{

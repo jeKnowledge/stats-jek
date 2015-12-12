@@ -1,7 +1,5 @@
 Slack={
   getLastMSG:function(channelID,channelName){
-    //#tech ID=C03243CUQ
-    //b3="C0D2AAXU3"
     RandomCenas.remove({msg:{$exists:true}});
     var link = "https://slack.com/api/channels.info" ;
     var arguments = {
@@ -27,6 +25,7 @@ Slack={
     Slack.getLastMSG("C0D2AAXU3","#b3");
     Slack.getLastMSG("C03SNTML6","#events");
     Slack.getLastMSG("C02NNME5P","#random");
+    Slack.getLastMSG("C02NNME5F","#geral");
   },
   getName:function(nomeID){
     var link = "https://slack.com/api/users.info" ;
