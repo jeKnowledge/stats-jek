@@ -21,7 +21,6 @@ Twitter={
 
     T.get('statuses/user_timeline', { screen_name: 'jeknowledge', count:5 },  Meteor.bindEnvironment(function (err, data, response){
       RandomCenas.update(Id2,{$set:{totalFoll:data[0].user.followers_count}});
-
       for(i=0;i<5;i++){
         var c=data[i];
         RandomCenas.insert({
@@ -37,8 +36,5 @@ Twitter={
       }
 
     }));
-  },
-  getTweets:function(){
-
   }
 };

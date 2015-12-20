@@ -12,10 +12,11 @@ Facebook={
     };
 
     var Id3=RandomCenas.findOne({api:"facebook"})._id;
+    var Id4=RandomCenas.findOne({api:"facebook"}).totalLikes;
+    var call1=HTTP.call('GET',link,arguments);
+    RandomCenas.update(Id3,{$set:{difLikes:Id4-call1.data.likes}});
+    RandomCenas.update(Id3,{$set:{totalLikes:call1.data.likes}});
 
-    HTTP.call('GET',link,arguments,function(error,response){
-      RandomCenas.update(Id3,{$set:{totalLikes:response.data.likes}});
-    });
 
     RandomCenas.remove({posts:{$exists:true}})
     var link2="https://graph.facebook.com/v2.5/jeknowledge?fields=posts.since("+d.toISOString()+")"
@@ -36,7 +37,6 @@ Facebook={
 
     var link3="https://graph.facebook.com/v2.5/jeknowledge?fields=tagged.since("+d.toISOString()+")";
     var call3=HTTP.call('GET',link3,arguments);
-    console.log(call3.data.tagged.data.length);
     RandomCenas.update(Id3,{$set:{totalMents:call3.data.tagged.data.length}});
 
     var link4="https://graph.facebook.com/v2.5/jeknowledge?fields=events";
@@ -46,7 +46,7 @@ Facebook={
       nome:data1.name,
       descriçao:data1.description,
       lugar:data1.place.name,
-      data:data1.start_time.substring(0,10) 
+      data:data1.start_time.substring(0,10)
     }
     }});
     /*var link2="https://graph.facebook.com/v2.2/oauth/access_token?grant_type=fb_exchange_token&client_id=1648751582053751&client_secret=7813719a7e72e52df6addda824ea7a9d&fb_exchange_token=CAAXbhZBRfBXcBAI2hH7V3g8uYvkWv9tolZC7KGexiwyseVovHZCsRTjnEarejySYZBPDvZBJAiFMxA88PYZBFSd5vpyznvh7bLc1tD5igxvASHZAywjRHwWWDkSbuWNY6i0pJDV5yZCR7MZBWsTqsVbe15udKujmdYc0L6fKCEnnuqyryg7DVu1hzNybjg3gOnbZATcmTeg577NgZDZD"
