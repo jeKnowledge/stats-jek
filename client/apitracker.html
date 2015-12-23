@@ -1,6 +1,6 @@
 
 <head>
-    <title>jeStats</title>
+    <title>jeKnowledge Stats</title>
     <meta charset="utf-8">
     <link type="text/css" rel="stylesheet" href="apitracker.css"/>
 </head>
@@ -8,21 +8,17 @@
 <body>
   <div class="header">
     <div class="title">
-      <h1>Estatísticas jeKnowledge</h1>
+      <h1>jeKnowledge Stats</h1>
     </div>
   </div>
-  {{>stats}}
+
+  {{> github}}
+  {{> twitter}}
+  {{> facebook}}
+  {{> slack}}
 </body>
 
 <template name="stats">
-  <div id="list1">
-     <ul>
-        <li><a href="#" id="aGithub">GitHub</a></li>
-        <li><a href="#" id="aTwitter">Twitter</a></li>
-        <li><a href="#" id="aFacebook">Facebook</a></li>
-        <li><a href="#" id="aSlack">Slack</a></li>
-     </ul>
-  </div>
   <div class="github">
     {{>github}}
   </div>
@@ -43,7 +39,7 @@
 
 <template name="github">
   <div class="geral">
-    <li>GitHub: <button class="myButton">Update</button>
+    <li>GitHub: <button class="btn btn-primary">Update</button>
       <p>Total Commits: {{github.totalCommits}} ({{github.lastCommitsnumb}} nos últimos 7 dias)</p>
       <p>Latest Commits:</p>
     </li>
@@ -58,7 +54,7 @@
 
 <template name="twitter">
   <div class="geral">
-    <li>Twitter: <button class="myButton">Update</button>
+    <li>Twitter: <button class="btn btn-primary">Update</button>
       <p>Total Followers: {{twitter.totalFoll}}</p>
       <p>Latest Tweets:</p>
     </li>
@@ -72,7 +68,7 @@
 
 <template name="facebook">
   <div class="geral">
-    <li>Facebook: <button class="myButton">Update</button>
+    <li>Facebook: <button class="btn btn-primary">Update</button>
       <p>Total Likes: {{facebook.totalLikes}} ({{facebook.difLikes}} since last update).</p>
       <p>Mentions(Last Week): {{facebook.totalMents}}</p>
       <p>Last Event: {{facebook.lastEvent.nome}} in {{facebook.lastEvent.data}} at {{facebook.lastEvent.lugar}}.</p>
@@ -88,7 +84,7 @@
 
 <template name="slack">
   <div class="geral">
-    <li>Slack: <button class="myButton">Update</button>
+    <li>Slack: <button class="btn btn-primary">Update</button>
       <p>Latest Messages by Channel:</p>
     </li>
   </div>
