@@ -12,24 +12,26 @@
     </div>
   </div>
 
-  {{> github}}
-  {{> twitter}}
-  {{> facebook}}
-  {{> slack}}
+  {{> stats}}
 </body>
 
 <template name="stats">
-  <div class="github">
-    {{>github}}
+  <div class="row">
+      <div class="github col-md-6 col-sm-1">
+          {{>github}}
+      </div>
+      <div class="twitter col-md-6 col-sm-1">
+          {{>twitter}}
+      </div>
   </div>
-  <div class="twitter" style="display:none">
-    {{>twitter}}
-  </div>
-  <div class="facebook" style="display:none">
-    {{>facebook}}
-  </div>
-  <div class="slack" style="display:none">
-    {{>slack}}
+
+  <div class="row">
+      <div class="facebook col-md-6 col-sm-1">
+          {{>facebook}}
+      </div>
+      <div class="slack col-md-6 col-sm-1">
+          {{>slack}}
+      </div>
   </div>
 </template>
 
