@@ -15,7 +15,7 @@
 </body>
 
 <template name="stats">
-    <div class="container">
+    <div id="main-container" class="container">
         <div class="row">
             <div class="github col-md-6 col-sm-1">
                 {{>github}}
@@ -43,7 +43,6 @@
 <template name="github">
     <div class="geral">
         <h2>GitHub</h2>
-        <button class="btn btn-primary">Update</button>
         <p>Total Commits: {{github.totalCommits}} ({{github.lastCommitsnumb}} nos últimos 7 dias)</p>
         <p>Latest Commits:</p>
     </div>
@@ -58,9 +57,8 @@
 <template name="twitter">
     <div class="geral">
         <h2>Twitter</h2>
-            <button class="btn btn-primary">Update</button>
-            <p>Total Followers: {{twitter.totalFoll}}</p>
-            <p>Latest Tweets:</p>
+        <p>Total Followers: {{twitter.totalFoll}}</p>
+        <p>Latest Tweets:</p>
     </div>
     <ul>
         {{# each dbTweets}}
@@ -72,11 +70,10 @@
 <template name="facebook">
     <div class="geral">
         <h2>Facebook</h2>
-            <button class="btn btn-primary">Update</button>
-            <p>Total Likes: {{facebook.totalLikes}} ({{facebook.difLikes}} since last update).</p>
-            <p>Mentions(Last Week): {{facebook.totalMents}}</p>
-            <p>Last Event: {{facebook.lastEvent.nome}} in {{facebook.lastEvent.data}} at {{facebook.lastEvent.lugar}}.</p>
-            <p>Latest posts:</p>
+        <p>Total Likes: {{facebook.totalLikes}} ({{facebook.difLikes}} since last update).</p>
+        <p>Mentions(Last Week): {{facebook.totalMents}}</p>
+        <p>Last Event: {{facebook.lastEvent.nome}} in {{facebook.lastEvent.data}} at {{facebook.lastEvent.lugar}}.</p>
+        <p>Latest posts:</p>
     </div>
     <ul>
         {{#each DBposts}}
@@ -88,8 +85,7 @@
 <template name="slack">
     <div class="geral">
         <h2>Slack</h2>
-            <button class="btn btn-primary">Update</button>
-            <p>Latest Messages by Channel:</p>
+        <p>Latest Messages by Channel:</p>
     </div>
     <ul>
         {{#each slack}}

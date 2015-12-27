@@ -1,11 +1,15 @@
 @font-face {
     font-family: KievitOTLight;
-    src: url('/KievitOT-Light.otf');
+    src: url('KievitOT-Light.otf');
 }
 
 .header {
     background: #112130;
     height: 150px;
+}
+
+#main-container {
+    margin-top: 50px;
 }
 
 .title {
@@ -22,4 +26,5 @@ body {
 
 h2 {
     font-family: KievitOTLight;
+    color: rgb(63, 191, 244);
 }
