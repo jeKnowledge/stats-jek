@@ -1,16 +1,16 @@
-.header{
-  background-color: #6ec4e9;
-  height: 200px;
-  max-width: 120%;
-  margin-top: -2%;
-  margin-left: -2%;
-  margin-right: -2%;
+.header {
+    background: #112130;
+    height: 150px;
 }
 
-.title{
-  font-family: helvetica;
-  font-size: 1.5em;
-  text-align: center;
-  padding-top: 3.5%;
-  color:white;
+.title {
+    font-family: KievitOT-Light;
+    font-size: 1.5em;
+    text-align: center;
+    padding-top: 3.5%;
+}
+
+body {
+    background: #202f3e;
+    color: white;
 }

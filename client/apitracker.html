@@ -1,4 +1,3 @@
-
 <head>
     <title>jeKnowledge Stats</title>
     <meta charset="utf-8">
@@ -6,33 +5,35 @@
 </head>
 
 <body>
-  <div class="header">
+<div class="header">
     <div class="title">
-      <h1>jeKnowledge Stats</h1>
+        <h1>jeKnowledge Stats</h1>
     </div>
-  </div>
+</div>
 
-  {{> stats}}
+{{> stats}}
 </body>
 
 <template name="stats">
-  <div class="row">
-      <div class="github col-md-6 col-sm-1">
-          {{>github}}
-      </div>
-      <div class="twitter col-md-6 col-sm-1">
-          {{>twitter}}
-      </div>
-  </div>
+    <div class="container">
+        <div class="row">
+            <div class="github col-md-6 col-sm-1">
+                {{>github}}
+            </div>
+            <div class="twitter col-md-6 col-sm-1">
+                {{>twitter}}
+            </div>
+        </div>
 
-  <div class="row">
-      <div class="facebook col-md-6 col-sm-1">
-          {{>facebook}}
-      </div>
-      <div class="slack col-md-6 col-sm-1">
-          {{>slack}}
-      </div>
-  </div>
+        <div class="row">
+            <div class="facebook col-md-6 col-sm-1">
+                {{>facebook}}
+            </div>
+            <div class="slack col-md-6 col-sm-1">
+                {{>slack}}
+            </div>
+        </div>
+    </div>
 </template>
 
 <template name="showDivs">
@@ -40,59 +41,62 @@
 </template>
 
 <template name="github">
-  <div class="geral">
-    <li>GitHub: <button class="btn btn-primary">Update</button>
-      <p>Total Commits: {{github.totalCommits}} ({{github.lastCommitsnumb}} nos últimos 7 dias)</p>
-      <p>Latest Commits:</p>
-    </li>
-  </div>
-  <ul>
-    {{# each commits}}
-    <li class="listaComm">«{{commit.message}}» by {{commit.user}} in {{commit.repo}}</li>
-    {{/each}}
-  </ul>
+    <div class="geral">
+        GitHub:
+        <button class="btn btn-primary">Update</button>
+        <p>Total Commits: {{github.totalCommits}} ({{github.lastCommitsnumb}} nos últimos 7 dias)</p>
+        <p>Latest Commits:</p>
+    </div>
+    <ul>
+        {{# each commits}}
+            <li class="listaComm">«{{commit.message}}» by {{commit.user}} in {{commit.repo}}</li>
+        {{/each}}
+    </ul>
 
 </template>
 
 <template name="twitter">
-  <div class="geral">
-    <li>Twitter: <button class="btn btn-primary">Update</button>
-      <p>Total Followers: {{twitter.totalFoll}}</p>
-      <p>Latest Tweets:</p>
-    </li>
-  </div>
-        <ul>
-          {{# each dbTweets}}
-            <li class="listaComm"> «{{tweets.message}}» ( Gostos: {{tweets.fav}} , Retweets: {{tweets.retweet}}) </li>
-          {{/each}}
-        </ul>
+    <div class="geral">
+        <li>Twitter:
+            <button class="btn btn-primary">Update</button>
+            <p>Total Followers: {{twitter.totalFoll}}</p>
+            <p>Latest Tweets:</p>
+        </li>
+    </div>
+    <ul>
+        {{# each dbTweets}}
+            <li class="listaComm"> «{{tweets.message}}» ( Gostos: {{tweets.fav}} , Retweets: {{tweets.retweet}})</li>
+        {{/each}}
+    </ul>
 </template>
 
 <template name="facebook">
-  <div class="geral">
-    <li>Facebook: <button class="btn btn-primary">Update</button>
-      <p>Total Likes: {{facebook.totalLikes}} ({{facebook.difLikes}} since last update).</p>
-      <p>Mentions(Last Week): {{facebook.totalMents}}</p>
-      <p>Last Event: {{facebook.lastEvent.nome}} in {{facebook.lastEvent.data}} at {{facebook.lastEvent.lugar}}.</p>
-      <p>Latest posts:</p>
-    </li>
-  </div>
-      <ul>
+    <div class="geral">
+        <li>Facebook:
+            <button class="btn btn-primary">Update</button>
+            <p>Total Likes: {{facebook.totalLikes}} ({{facebook.difLikes}} since last update).</p>
+            <p>Mentions(Last Week): {{facebook.totalMents}}</p>
+            <p>Last Event: {{facebook.lastEvent.nome}} in {{facebook.lastEvent.data}} at {{facebook.lastEvent.lugar}}.</p>
+            <p>Latest posts:</p>
+        </li>
+    </div>
+    <ul>
         {{#each DBposts}}
-          <li class="listaComm"> "{{posts.message}}" ({{posts.vat}})</li>
+            <li class="listaComm"> "{{posts.message}}" ({{posts.vat}})</li>
         {{/each}}
-      </ul>
+    </ul>
 </template>
 
 <template name="slack">
-  <div class="geral">
-    <li>Slack: <button class="btn btn-primary">Update</button>
-      <p>Latest Messages by Channel:</p>
-    </li>
-  </div>
-  <ul>
-    {{#each slack}}
-      <li class="listaComm"> "{{msg.message}}" by {{msg.author}} in {{msg.channel}}.</li>
-    {{/each}}
-  </ul>
+    <div class="geral">
+        <li>Slack:
+            <button class="btn btn-primary">Update</button>
+            <p>Latest Messages by Channel:</p>
+        </li>
+    </div>
+    <ul>
+        {{#each slack}}
+            <li class="listaComm"> "{{msg.message}}" by {{msg.author}} in {{msg.channel}}.</li>
+        {{/each}}
+    </ul>
 </template>
