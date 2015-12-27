@@ -1,30 +1,31 @@
 @font-face {
-    font-family: KievitOTLight;
-    src: url('KievitOT-Light.otf');
+  font-family: KievitOTLight;
+  src: url('KievitOT-Light.otf');
 }
 
-.header {
-    /*background: #112130;*/
-    height: 150px;
+header {
+  .title {
+    h1 {
+      font-size: 3.5em;
+      text-align: center;
+      font-family: KievitOTLight;
+      padding-top: 50px;
+      color: #339ff4;
+
+    }
+  }
 }
 
 #main-container {
-    margin-top: 50px;
-}
+  margin-top: 50px;
 
-.title {
+  h2 {
     font-family: KievitOTLight;
-    text-align: center;
-    padding-top: 50px;
     color: #339ff4;
+  }
 }
 
 body {
-    background: #202f3e;
-    color: white;
-}
-
-h2 {
-    font-family: KievitOTLight;
-    color: #339ff4;
+  background: #202f3e;
+  color: white;
 }
