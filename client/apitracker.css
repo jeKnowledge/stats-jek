@@ -1,13 +1,18 @@
+@font-face {
+    font-family: KievitOTLight;
+    src: url('/KievitOT-Light.otf');
+}
+
 .header {
     background: #112130;
     height: 150px;
 }
 
 .title {
-    font-family: KievitOT-Light;
+    font-family: KievitOTLight;
     font-size: 1.5em;
     text-align: center;
-    padding-top: 3.5%;
+    padding-top: 50px;
 }
 
 body {
