@@ -42,7 +42,7 @@
 
 <template name="github">
     <div class="geral">
-        GitHub:
+        <h2>GitHub</h2>
         <button class="btn btn-primary">Update</button>
         <p>Total Commits: {{github.totalCommits}} ({{github.lastCommitsnumb}} nos últimos 7 dias)</p>
         <p>Latest Commits:</p>
@@ -57,11 +57,10 @@
 
 <template name="twitter">
     <div class="geral">
-        <li>Twitter:
+        <h2>Twitter</h2>
             <button class="btn btn-primary">Update</button>
             <p>Total Followers: {{twitter.totalFoll}}</p>
             <p>Latest Tweets:</p>
-        </li>
     </div>
     <ul>
         {{# each dbTweets}}
@@ -72,13 +71,12 @@
 
 <template name="facebook">
     <div class="geral">
-        <li>Facebook:
+        <h2>Facebook</h2>
             <button class="btn btn-primary">Update</button>
             <p>Total Likes: {{facebook.totalLikes}} ({{facebook.difLikes}} since last update).</p>
             <p>Mentions(Last Week): {{facebook.totalMents}}</p>
             <p>Last Event: {{facebook.lastEvent.nome}} in {{facebook.lastEvent.data}} at {{facebook.lastEvent.lugar}}.</p>
             <p>Latest posts:</p>
-        </li>
     </div>
     <ul>
         {{#each DBposts}}
@@ -89,10 +87,9 @@
 
 <template name="slack">
     <div class="geral">
-        <li>Slack:
+        <h2>Slack</h2>
             <button class="btn btn-primary">Update</button>
             <p>Latest Messages by Channel:</p>
-        </li>
     </div>
     <ul>
         {{#each slack}}
