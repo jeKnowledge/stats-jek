@@ -1,8 +1,7 @@
 Template.slack.helpers({
   slack:function(){
-    return RandomCenas.find(
+    return SlackCollection.find(
       {
-        api:"slack",
         msg:{$exists:true}
       }
     );

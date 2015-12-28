@@ -4,14 +4,14 @@ Github = {
     //Delete old
     RandomCenas.remove({commit: {$exists: true}});
     var d = new Date();
-    d.setDate(d.getDate() -20);
+    d.setDate(d.getDate() -7);
 
     var link = "https://api.github.com/repos/jeknowledge/" + name + "/commits";
 
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
       params: {
-        "access_token": "1330397612880f93b0ecba910cc21a5bd8de8978",
+        "access_token": "17db15038ab7439110f532fb10d1a20f7c963ba8",
         "since": d.toISOString()
       }
     };
@@ -62,7 +62,7 @@ Github = {
     var link = "https://api.github.com/repos/jeknowledge/" + name + "/stats/contributors";
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
-      params: {"access_token": "1330397612880f93b0ecba910cc21a5bd8de8978"}
+      params: {"access_token": "17db15038ab7439110f532fb10d1a20f7c963ba8"}
     };
 
 
@@ -73,8 +73,7 @@ Github = {
       if(!github.repos[name] || github.repos[name] != response.data.total){
         if(response.data!== null){
           Github.updateRepoData(name.valueOf(), response.data);
-        }else{
-          console.log("AQUIIIIIi")
+
         }
       }
 
@@ -82,10 +81,10 @@ Github = {
   },
   getRepoList : function(){
 
-    var link = "https://api.github.com/orgs/jeknowledge/repos";
+    var link = "https://api.github.com/orgs/jeknowledge/repos?per_page=50";
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
-      params: {"access_token": "1330397612880f93b0ecba910cc21a5bd8de8978"}
+      params: {"access_token": "17db15038ab7439110f532fb10d1a20f7c963ba8"}
     };
     RandomCenas.update(RandomCenas.findOne({api:"github"})._id,{$set:{lastCommitsnumb:0}});
     HTTP.call('GET', link, arguments, function(error,response){

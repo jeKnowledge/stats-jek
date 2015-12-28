@@ -10,27 +10,19 @@ var T = new Twit({
 Twitter={
   updateTotalFoll:function(){
 
-    RandomCenas.remove({tweets: {$exists: true}});
-    if(RandomCenas.findOne({api:"twitter"})===undefined){
-      RandomCenas.insert({api:"twitter",totalFoll:0});
-      var Id2=RandomCenas.findOne({api:"twitter"})._id;
-    }else{
-      var Id2=RandomCenas.findOne({api:"twitter"})._id;
-    }
-
+    TwitterCollection.remove({tweets: {$exists: true}});
+    TwitterCollection.remove({totalFoll:{$exists:true}});
 
     T.get('statuses/user_timeline', { screen_name: 'jeknowledge', count:5 },  Meteor.bindEnvironment(function (err, data, response){
-      RandomCenas.update(Id2,{$set:{totalFoll:data[0].user.followers_count}});
+      TwitterCollection.insert({totalFoll:data[0].user.followers_count});
       for(i=0;i<5;i++){
         var c=data[i];
-        RandomCenas.insert({
-          api:"twitter",
-          tweets:{
-            message: c.text,
-            date: Date.parse(c.created_at),
-            fav:c.favorite_count,
-            retweet:c.retweet_count
-
+        TwitterCollection.insert({
+            tweets:{
+              message: c.text,
+              date: Date.parse(c.created_at),
+              fav:c.favorite_count,
+              retweet:c.retweet_count
           }
         });
       }

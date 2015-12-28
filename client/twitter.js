@@ -1,11 +1,10 @@
 Template.twitter.helpers({
   twitter:function(){
-    return RandomCenas.findOne({api:"twitter"});
+    return TwitterCollection.findOne({totalFoll:{$exists:true}});
   },
   dbTweets:function(){
-    return RandomCenas.find(
+    return TwitterCollection.find(
       {
-        api: "twitter",
         tweets: {$exists: true}
       },
       {

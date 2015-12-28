@@ -1,6 +1,6 @@
 Slack={
   getLastMSG:function(channelID,channelName){
-    RandomCenas.remove({msg:{$exists:true}});
+    SlackCollection.remove({msg:{$exists:true}});
     var link = "https://slack.com/api/channels.info" ;
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
@@ -10,8 +10,7 @@ Slack={
     };
     HTTP.call('GET',link,arguments,function(error,response){
       var data=response.data.channel.latest;
-      RandomCenas.insert({
-        api:"slack",
+      SlackCollection.insert({
         msg:{
           channel:channelName,
           message:data.text,
