@@ -4,7 +4,6 @@ Template.slack.helpers({
     return SlackCollection.find(
       {
         msg:{$exists:true}
-
       }
     )
   }
