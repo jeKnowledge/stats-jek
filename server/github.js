@@ -2,7 +2,8 @@ Github = {
   updateLastWeekCommits : function(name){
 
     //Delete old
-    RandomCenas.remove({commit: {$exists: true}});
+    GitCollection.remove({commit:{$exists:true}});
+
     var d = new Date();
     d.setDate(d.getDate() -7);
 
@@ -11,7 +12,7 @@ Github = {
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
       params: {
-        "access_token": "17db15038ab7439110f532fb10d1a20f7c963ba8",
+        "access_token": "f94934477049f5d19eaee42816b8fa6dab76ba90",
         "since": d.toISOString()
       }
     };
@@ -22,8 +23,8 @@ Github = {
         for(var i = 0; i < response.data.length; i++){
           var c = response.data[i];
           var authorCommit=c.author.login; //Commit info
-          RandomCenas.insert({
-            api: "github",
+
+          GitCollection.insert({
             commit: {
               message: c.commit.message,
               date: Date.parse(c.commit.author.date),
@@ -31,43 +32,45 @@ Github = {
               user: c.author.login
             }
           });
-          RandomCenas.update(github._id,{$inc:{lastCommitsnumb:1}});
+
+          GitCollection.update({lastCommitsnumb:{$exists:true}},{$inc:{lastCommitsnumb:1}});
         }
       }
     });
   },
   updateRepoData : function(name, data){
-    var github = RandomCenas.findOne({api:"github"});
+    var github=GitCollection.findOne({repositorios:"Lista"});
+    var github1=GitCollection.findOne({totalCommits:{$exists:true}});
 
     //Repo TotalCommits
     var new_commits, sum = 0;
 
-    for(var i = 0; i < data.length; i++)
+    for(var i = 0; i < data.length; i++){
       sum += data[i].total;
+    }
 
+    GitCollection.update(github1._id,{$inc:{totalCommits: sum}});
     //Org TotalCommits
     new_commits = sum;
-    if(github.repos[name])
+    if(github.repos[name]){
       new_commits -= github.repos[name]
-
+    }
     //Update Repo Data
     github.repos[name] = sum
     //Save
-    RandomCenas.update(github._id,{
-      $set: {totalCommits: github.totalCommits + new_commits, repos: github.repos}
-    });
+    GitCollection.update(github._id,{$set:{repos:github.repos}});
   },
   checkRepo : function(name){
 
     var link = "https://api.github.com/repos/jeknowledge/" + name + "/stats/contributors";
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
-      params: {"access_token": "17db15038ab7439110f532fb10d1a20f7c963ba8"}
+      params: {"access_token": "f94934477049f5d19eaee42816b8fa6dab76ba90"}
     };
 
 
     HTTP.call('GET', link, arguments, function(error,response){
-      var github = RandomCenas.findOne({api:"github"});
+      var github=GitCollection.findOne({repositorios:"Lista"});
 
       //does it exist in our db? Or has it changed?
       if(!github.repos[name] || github.repos[name] != response.data.total){
@@ -84,9 +87,12 @@ Github = {
     var link = "https://api.github.com/orgs/jeknowledge/repos?per_page=50";
     var arguments = {
       headers: {"User-Agent": "Meteor/1.0"},
-      params: {"access_token": "17db15038ab7439110f532fb10d1a20f7c963ba8"}
+      params: {"access_token": "f94934477049f5d19eaee42816b8fa6dab76ba90"}
     };
-    RandomCenas.update(RandomCenas.findOne({api:"github"})._id,{$set:{lastCommitsnumb:0}});
+
+    GitCollection.update({lastCommitsnumb:{$exists:true}},{$set:{lastCommitsnumb:0}});
+    GitCollection.update({totalCommits:{$exists:true}},{$set:{totalCommits:0}});
+
     HTTP.call('GET', link, arguments, function(error,response){
       for(var i = 0; i < response.data.length; i++){
         if(response.data[i].name!=="list2gmaps.js" && response.data[i].name!=="repos.list2gmaps.js") {

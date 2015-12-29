@@ -1,11 +1,13 @@
 Template.github.helpers({
-  github: function(){
-    return RandomCenas.findOne({api: "github"});
+  githubTot: function(){
+    return GitCollection.findOne({totalCommits:{$exists:true}});
+  },
+  githubLast:function(){
+    return GitCollection.findOne({lastCommitsnumb:{$exists:true}});
   },
   commits: function(){
-    return RandomCenas.find(
+    return GitCollection.find(
       {
-        api: "github",
         commit: {$exists: true}
       },
       {

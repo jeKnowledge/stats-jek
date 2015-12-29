@@ -11,10 +11,10 @@ Twitter={
   updateTotalFoll:function(){
 
     TwitterCollection.remove({tweets: {$exists: true}});
-    TwitterCollection.remove({totalFoll:{$exists:true}});
-
+    TwitterCollection.insert({totalFoll:0});
+    
     T.get('statuses/user_timeline', { screen_name: 'jeknowledge', count:5 },  Meteor.bindEnvironment(function (err, data, response){
-      TwitterCollection.insert({totalFoll:data[0].user.followers_count});
+      TwitterCollection.update({totalFoll:{$exists:true}},{$set:{totalFoll:data[0].user.followers_count}});
       for(i=0;i<5;i++){
         var c=data[i];
         TwitterCollection.insert({
