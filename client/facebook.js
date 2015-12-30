@@ -1,11 +1,19 @@
 Template.facebook.helpers({
-  facebook:function(){
-    return RandomCenas.findOne({api:"facebook"});
+  facebookTot:function(){
+    return FbookCollection.findOne({totalLikes:{$exists:true}});
+  },
+  facebookDif:function(){
+    return FbookCollection.findOne({difLikes:{$exists:true}});
+  },
+  facebookTotMent:function(){
+    return FbookCollection.findOne({totalMents:{$exists:true}});
+  },
+  facebookLastEv:function(){
+    return FbookCollection.findOne({lastEvent:{$exists:true}});
   },
   DBposts:function(){
-    return RandomCenas.find(
+    return FbookCollection.find(
       {
-        api:"facebook",
         posts:{$exists:true}
       },
       {

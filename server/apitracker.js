@@ -9,9 +9,6 @@ function initDB(){
     GitCollection.insert({totalCommits:0})
   }
 
-  if(RandomCenas.findOne({api:"facebook"})===undefined){
-    RandomCenas.insert({api:"facebook",totalLikes:0,difLikes:0,totalMents:0,lastEvent:{}});
-  }
 };
 
 Meteor.startup(function () {
